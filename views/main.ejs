@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Stylesheets/style2.css">
+    <title>Document</title>
+    
+</head>
+<body>
+   <div class="logo">MY BLOGS</div>
+
+   <div class="buttons">
+    <div class="button create">
+        <button onclick="window.location.href='/create'">CREATE BLOG +</button>
+    </div>
+    <div class="button logout">
+        <button onclick="window.location.href='/logout'">LOG OUT</button>
+    </div>
+</div>
+
+
+   <div class="allblogs">
+    <% if (allBlogs.length > 0) { %>
+    <% allBlogs.forEach(blog => { %>
+        <div class="blog-card">
+            <img src= "<%= blog.imageLink %>" alt="<%=blog.title%>">
+            <div class="blog-details">
+                <h2><%=blog.title%></h2>
+                <p><%=blog.name%></p>
+                <% 
+                  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                  const formattedDate = new Date(blog.date).toLocaleDateString('en-IN', dateOptions);
+                %>
+                <p><%= formattedDate %></p>
+            </div>
+        </div>
+    <% }); %>
+    <% } else { %>
+        <p>No blogs available at the moment. Check back later!</p>
+    <% } %>
+   </div>
+</body>
+<script src="/Javascripts/script.js"></script>
+</html>
